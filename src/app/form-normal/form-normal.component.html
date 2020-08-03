@@ -1,0 +1,20 @@
+<h3>Normal Dynamic Form</h3>
+<form clrForm
+  (ngSubmit)="onSubmit()"
+  [formGroup]="form">
+
+  <ng-container *ngFor="let m of models">
+    <app-dynamic-form-control [model]="m"
+      [form]="form"></app-dynamic-form-control>
+  </ng-container>
+
+  <div class="button-box">
+    <button class="btn btn-primary"
+      type="submit"
+      [disabled]="form.invalid">Save</button>
+  </div>
+</form>
+
+<div *ngIf="payLoad">
+  <strong>Saved the following values</strong><br>{{payLoad}}
+</div>

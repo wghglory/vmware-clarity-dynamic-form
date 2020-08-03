@@ -5,11 +5,18 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { ClarityModule } from '@clr/angular';
 
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule, routedComponents } from './app-routing.module';
+
+import { DynamicFormControlComponent } from '@shared/dynamic-form-control/dynamic-form-control.component';
+
 import { AppComponent } from './app.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+    AppComponent,
+    DynamicFormControlComponent,
+    ...routedComponents,
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
