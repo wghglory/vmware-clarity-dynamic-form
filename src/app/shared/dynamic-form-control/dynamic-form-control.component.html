@@ -1,0 +1,53 @@
+<div [formGroup]="form">
+
+  <ng-container *ngIf="model"
+    [ngSwitch]="model.controlType">
+    <clr-input-container *ngSwitchCase="'input'">
+      <label [attr.for]="model.key">{{model.label}}</label>
+      <input clrInput
+        [formControlName]="model.key"
+        [id]="model.key"
+        [type]="model.type">
+      <clr-control-helper *ngIf="model.helper">
+        {{model.helper}}
+      </clr-control-helper>
+      <clr-control-error *ngFor="let kv of controlErrors | keyvalue">
+        {{model.validations[kv.key].error}}
+      </clr-control-error>
+    </clr-input-container>
+
+    <clr-select-container *ngSwitchCase="'select'">
+      <label [attr.for]="model.key">{{model.label}}</label>
+      <select clrSelect
+        [formControlName]="model.key"
+        [id]="model.key">
+        <option *ngFor="let opt of model.options"
+          [value]="opt.key">{{opt.value}}</option>
+      </select>
+      <clr-control-helper *ngIf="model.helper">
+        {{model.helper}}
+      </clr-control-helper>
+      <clr-control-error *ngFor="let kv of controlErrors | keyvalue">
+        {{model.validations[kv.key].error}}
+      </clr-control-error>
+    </clr-select-container>
+
+    <clr-checkbox-container clrInline
+      *ngSwitchCase="'checkbox'">
+      <clr-checkbox-wrapper>
+        <input type="checkbox"
+          clrCheckbox
+          [formControlName]="model.key"
+          [id]="model.key" />
+        <label [attr.for]="model.key">{{model.label}}</label>
+      </clr-checkbox-wrapper>
+      <clr-control-helper *ngIf="model.helper">
+        {{model.helper}}
+      </clr-control-helper>
+      <clr-control-error *ngFor="let kv of controlErrors | keyvalue">
+        {{model.validations[kv.key].error}}
+      </clr-control-error>
+    </clr-checkbox-container>
+
+  </ng-container>
+</div>
